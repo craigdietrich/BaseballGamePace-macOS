@@ -14,13 +14,21 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        parseData()
         updateCurrentTime()
     }
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
+    }
+    
+    func parseData() {
+        let view = gameView(frame: NSMakeRect(10, 10, 100, 100))
+        self.view.addSubview(view)
+        view.AwayLabel.stringValue = "TB"
+        view.HomeLabel.stringValue = "OAK"
     }
     
     func updateCurrentTime() {

@@ -720,7 +720,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="open scoreboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RoW-f2-XFw">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="clickedOpenScoreboard:" target="XfG-lQ-9wD" id="p99-Bw-d8X"/>
@@ -741,7 +741,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="craigdietrich.com" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="clA-cv-dqf">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="clickedOpenWebsite:" target="XfG-lQ-9wD" id="i2B-PU-CFI"/>
@@ -788,13 +788,23 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--View Controller-->
+        <!--gamesViewController-->
         <scene sceneID="S7v-8d-bzT">
             <objects>
-                <viewController id="2vX-bq-QDi" sceneMemberID="viewController">
+                <viewController title="gamesViewController" id="2vX-bq-QDi" sceneMemberID="viewController">
                     <view key="view" id="sDi-T1-a91">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYn-IB-fLK">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="0.0"/>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xYn-IB-fLK" firstAttribute="leading" secondItem="sDi-T1-a91" secondAttribute="leading" id="490-Ow-b4T"/>
+                            <constraint firstAttribute="bottom" secondItem="xYn-IB-fLK" secondAttribute="bottom" id="Enp-wh-9pl"/>
+                            <constraint firstAttribute="trailing" secondItem="xYn-IB-fLK" secondAttribute="trailing" id="pEZ-2Z-zc7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="eSQ-kX-nVe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

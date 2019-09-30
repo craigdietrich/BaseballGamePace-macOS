@@ -13,6 +13,8 @@
 		46E652AF233ED8CA0051BCF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E652AD233ED8CA0051BCF8 /* Main.storyboard */; };
 		46E652BB233ED8CA0051BCF8 /* BaseballGamePaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E652BA233ED8CA0051BCF8 /* BaseballGamePaceTests.swift */; };
 		46E652C6233ED8CA0051BCF8 /* BaseballGamePaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E652C5233ED8CA0051BCF8 /* BaseballGamePaceUITests.swift */; };
+		46E8D22E2342B62B002D45BB /* gameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8D22D2342B62B002D45BB /* gameView.swift */; };
+		46E8D2342342B685002D45BB /* gameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E8D2332342B685002D45BB /* gameView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		46E652C1233ED8CA0051BCF8 /* BaseballGamePaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaseballGamePaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E652C5233ED8CA0051BCF8 /* BaseballGamePaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballGamePaceUITests.swift; sourceTree = "<group>"; };
 		46E652C7233ED8CA0051BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46E8D22D2342B62B002D45BB /* gameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameView.swift; sourceTree = "<group>"; };
+		46E8D2332342B685002D45BB /* gameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = gameView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				46E652A9233ED8C90051BCF8 /* ViewController.swift */,
 				46E652AB233ED8CA0051BCF8 /* Assets.xcassets */,
 				46E652AD233ED8CA0051BCF8 /* Main.storyboard */,
+				46E8D22D2342B62B002D45BB /* gameView.swift */,
+				46E8D2332342B685002D45BB /* gameView.xib */,
 				46E652B0233ED8CA0051BCF8 /* Info.plist */,
 				46E652B1233ED8CA0051BCF8 /* BaseballGamePace.entitlements */,
 			);
@@ -229,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E652AC233ED8CA0051BCF8 /* Assets.xcassets in Resources */,
+				46E8D2342342B685002D45BB /* gameView.xib in Resources */,
 				46E652AF233ED8CA0051BCF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E8D22E2342B62B002D45BB /* gameView.swift in Sources */,
 				46E652AA233ED8C90051BCF8 /* ViewController.swift in Sources */,
 				46E652A8233ED8C90051BCF8 /* AppDelegate.swift in Sources */,
 			);
