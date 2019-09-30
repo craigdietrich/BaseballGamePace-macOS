@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="BaseballGamePace" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -683,10 +685,10 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Baseball Game Pace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="486" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -700,18 +702,104 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ViewController" id="XfG-lQ-9wD" customClass="ViewController" customModule="BaseballGamePace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="equalCentering" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBW-qA-WYs">
+                                <rect key="frame" x="20" y="10" width="400" height="21"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bRB-1Q-L4g">
+                                        <rect key="frame" x="-6" y="-7" width="132" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="e1Q-Df-tCl"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="open scoreboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RoW-f2-XFw">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="11"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clickedOpenScoreboard:" target="XfG-lQ-9wD" id="p99-Bw-d8X"/>
+                                        </connections>
+                                    </button>
+                                    <textField identifier="currentTimeLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ClJ-m0-Svl">
+                                        <rect key="frame" x="135" y="3" width="131" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="2019-04-01 01:01:01" id="7Hq-6a-ibi">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button identifier="openWebsiteButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wVX-zJ-YsM">
+                                        <rect key="frame" x="274" y="-7" width="132" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="D8P-uD-EUY"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="craigdietrich.com" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="clA-cv-dqf">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="11"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clickedOpenWebsite:" target="XfG-lQ-9wD" id="i2B-PU-CFI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="ec3-fI-52o"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fCw-PS-KRd">
+                                <rect key="frame" x="0.0" y="41" width="440" height="229"/>
+                                <connections>
+                                    <segue destination="2vX-bq-QDi" kind="embed" id="OcG-ta-zxb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="BBW-qA-WYs" firstAttribute="top" secondItem="fCw-PS-KRd" secondAttribute="bottom" constant="10" id="PYb-MA-Nhe"/>
+                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="20" symbolic="YES" id="PcA-cS-z3W"/>
+                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="10" id="Q5t-9V-cIR"/>
+                            <constraint firstItem="BBW-qA-WYs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="VA7-33-Stc"/>
+                            <constraint firstAttribute="trailing" secondItem="BBW-qA-WYs" secondAttribute="trailing" constant="20" symbolic="YES" id="VFq-J6-NO7"/>
+                            <constraint firstAttribute="trailing" secondItem="fCw-PS-KRd" secondAttribute="trailing" id="bPu-ri-bTW"/>
+                            <constraint firstItem="fCw-PS-KRd" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fdq-Td-LYc"/>
+                            <constraint firstItem="fCw-PS-KRd" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="jaN-gi-PmE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="ClJ-m0-Svl" id="EG4-pk-drC"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="S7v-8d-bzT">
+            <objects>
+                <viewController id="2vX-bq-QDi" sceneMemberID="viewController">
+                    <view key="view" id="sDi-T1-a91">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="eSQ-kX-nVe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-445" y="543"/>
         </scene>
     </scenes>
 </document>
