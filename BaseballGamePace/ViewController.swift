@@ -10,12 +10,19 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var gameStackView: NSStackView!
     @IBOutlet weak var currentTimeLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         parseData()
+        parseData()
+        parseData()
+        parseData()
+        parseData()
         updateCurrentTime()
+        //games.wantsLayer = true
+        //games.layer?.backgroundColor = NSColor.red.cgColor
     }
 
     override var representedObject: Any? {
@@ -25,10 +32,59 @@ class ViewController: NSViewController {
     }
     
     func parseData() {
-        let view = gameView(frame: NSMakeRect(10, 10, 100, 100))
-        self.view.addSubview(view)
-        view.AwayLabel.stringValue = "TB"
-        view.HomeLabel.stringValue = "OAK"
+        
+        var views = [gameView]()
+        
+        let game1 = gameView(frame: NSMakeRect(0, 0, 115, 32))
+        game1.AwayLabel.stringValue = "SEA"
+        game1.HomeLabel.stringValue = "OAK"
+        views += [game1]
+             
+        let game2 = gameView(frame: NSMakeRect(0, 0, 115, 32))
+        game2.AwayLabel.stringValue = "MIA"
+        game2.HomeLabel.stringValue = "LAD"
+        views += [game2]
+        
+        let game3 = gameView(frame: NSMakeRect(0, 0, 115, 32))
+        game3.AwayLabel.stringValue = "NYM"
+        game3.HomeLabel.stringValue = "NYY"
+        views += [game3]
+        
+        let stack = NSStackView(views: views)
+        stack.orientation = NSUserInterfaceLayoutOrientation.horizontal
+        stack.distribution = NSStackView.Distribution.fillEqually
+        gameStackView.addArrangedSubview(stack)
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint(
+            item: stack,
+            attribute: NSLayoutConstraint.Attribute.leading,
+            relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: gameStackView,
+            attribute: NSLayoutConstraint.Attribute.leading,
+            multiplier: 1.0,
+            constant: 0
+        )
+        let trailingConstraint = NSLayoutConstraint(
+            item: stack,
+            attribute: NSLayoutConstraint.Attribute.trailing,
+            relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: gameStackView,
+            attribute: NSLayoutConstraint.Attribute.trailing,
+            multiplier: 1.0,
+            constant: 0
+        )
+        let bottomContraint = NSLayoutConstraint(
+            item: stack,
+            attribute: NSLayoutConstraint.Attribute.height,
+            relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: nil,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+            multiplier: 1.0,
+            constant: 32
+        )
+        gameStackView.addConstraints([leadingConstraint, trailingConstraint, bottomContraint])
+
     }
     
     func updateCurrentTime() {

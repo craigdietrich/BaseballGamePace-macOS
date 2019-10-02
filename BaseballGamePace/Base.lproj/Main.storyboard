@@ -710,7 +710,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="440" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="equalCentering" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBW-qA-WYs">
+                            <stackView identifier="buttonBarStackView" distribution="equalCentering" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBW-qA-WYs">
                                 <rect key="frame" x="20" y="10" width="400" height="21"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bRB-1Q-L4g">
@@ -748,9 +748,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="ec3-fI-52o"/>
-                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -762,54 +759,27 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fCw-PS-KRd">
-                                <rect key="frame" x="0.0" y="41" width="440" height="229"/>
-                                <connections>
-                                    <segue destination="2vX-bq-QDi" kind="embed" id="OcG-ta-zxb"/>
-                                </connections>
-                            </containerView>
+                            <stackView identifier="gamesStackView" distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LrS-j7-cCP">
+                                <rect key="frame" x="20" y="250" width="400" height="0.0"/>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="BBW-qA-WYs" firstAttribute="top" secondItem="fCw-PS-KRd" secondAttribute="bottom" constant="10" id="PYb-MA-Nhe"/>
-                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="20" symbolic="YES" id="PcA-cS-z3W"/>
-                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="10" id="Q5t-9V-cIR"/>
-                            <constraint firstItem="BBW-qA-WYs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="VA7-33-Stc"/>
-                            <constraint firstAttribute="trailing" secondItem="BBW-qA-WYs" secondAttribute="trailing" constant="20" symbolic="YES" id="VFq-J6-NO7"/>
-                            <constraint firstAttribute="trailing" secondItem="fCw-PS-KRd" secondAttribute="trailing" id="bPu-ri-bTW"/>
-                            <constraint firstItem="fCw-PS-KRd" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fdq-Td-LYc"/>
-                            <constraint firstItem="fCw-PS-KRd" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="jaN-gi-PmE"/>
+                            <constraint firstItem="BBW-qA-WYs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="5dh-1n-Rr0"/>
+                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="10" id="D9w-C9-qq3"/>
+                            <constraint firstAttribute="trailing" secondItem="BBW-qA-WYs" secondAttribute="trailing" constant="20" symbolic="YES" id="IVJ-Vw-Cwb"/>
+                            <constraint firstAttribute="trailing" secondItem="LrS-j7-cCP" secondAttribute="trailing" constant="20" symbolic="YES" id="WEs-5h-3R8"/>
+                            <constraint firstItem="LrS-j7-cCP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="fqP-HQ-Yyv"/>
+                            <constraint firstItem="LrS-j7-cCP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="oSu-b8-ozS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="currentTimeLabel" destination="ClJ-m0-Svl" id="EG4-pk-drC"/>
+                        <outlet property="gameStackView" destination="LrS-j7-cCP" id="bnd-fH-XfE"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
-        </scene>
-        <!--gamesViewController-->
-        <scene sceneID="S7v-8d-bzT">
-            <objects>
-                <viewController title="gamesViewController" id="2vX-bq-QDi" sceneMemberID="viewController">
-                    <view key="view" id="sDi-T1-a91">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYn-IB-fLK">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="0.0"/>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="xYn-IB-fLK" firstAttribute="leading" secondItem="sDi-T1-a91" secondAttribute="leading" id="490-Ow-b4T"/>
-                            <constraint firstAttribute="bottom" secondItem="xYn-IB-fLK" secondAttribute="bottom" id="Enp-wh-9pl"/>
-                            <constraint firstAttribute="trailing" secondItem="xYn-IB-fLK" secondAttribute="trailing" id="pEZ-2Z-zc7"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="eSQ-kX-nVe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-445" y="543"/>
         </scene>
     </scenes>
 </document>
