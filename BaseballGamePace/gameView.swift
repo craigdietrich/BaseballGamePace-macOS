@@ -14,6 +14,11 @@ class gameView: NSView {
     @IBOutlet weak var AwayLabel: NSTextField!
     @IBOutlet weak var HomeLabel: NSTextField!
     
+    public func gameValues(game: NSObject) {
+        AwayLabel.stringValue = game.value(forKey: "away") as! String
+        HomeLabel.stringValue = game.value(forKey: "home") as! String
+    }
+
     // https://samwize.com/2018/11/21/creating-a-custom-nsview-with-xib/
     // https://www.youtube.com/watch?v=Wx7qk2oOV48
     
@@ -32,6 +37,9 @@ class gameView: NSView {
         let nib = NSNib(nibNamed: .init(String(describing: type(of: self))), bundle: bundle)!
         nib.instantiate(withOwner: self, topLevelObjects: nil)
         addSubview(customView)
+        //customView.wantsLayer = true
+        //customView.layer?.backgroundColor = NSColor.blue.cgColor
+        //customView.widthAnchor.constraint(equalToConstant: 115.0).isActive = true
     }
     
     override func draw(_ dirtyRect: NSRect) {

@@ -15,14 +15,9 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        parseData()
-        parseData()
-        parseData()
-        parseData()
-        parseData()
+        let json = getJsonFromUrl()
+        parseData(json: json)
         updateCurrentTime()
-        //games.wantsLayer = true
-        //games.layer?.backgroundColor = NSColor.red.cgColor
     }
 
     override var representedObject: Any? {
@@ -31,24 +26,47 @@ class ViewController: NSViewController {
         }
     }
     
-    func parseData() {
+    internal func getJsonFromUrl() -> Array<Any> {  // https://developer.apple.com/swift/blog/?id=37
+        let feed = "https://craigdietrich.com/projects/feeds/baseball-game-pace.json"
+        let url = URL(string: feed)
+        do {
+            let contents = try String(contentsOf: url!)
+            let data = Data(contents.utf8)
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            return json as! Array
+        } catch {
+            // contents could not be loaded
+        }
+        return []
+    }
+    
+    internal func parseData(json: Array<Any>) {
         
+        var numRows: Double = Double(json.count / 3)
+        numRows.round(.down)
+        numRows = numRows - 1
+        if json.count % 3 > 0 {
+            numRows = numRows + 1
+        }
+        for j in 0...Int(numRows) {
+            print(j)
+            parseRow(json: json, start: j)
+        }
+        
+    }
+                
+    internal func parseRow(json: Array<Any>, start: Int) {
+
         var views = [gameView]()
-        
-        let game1 = gameView(frame: NSMakeRect(0, 0, 115, 32))
-        game1.AwayLabel.stringValue = "SEA"
-        game1.HomeLabel.stringValue = "OAK"
-        views += [game1]
-             
-        let game2 = gameView(frame: NSMakeRect(0, 0, 115, 32))
-        game2.AwayLabel.stringValue = "MIA"
-        game2.HomeLabel.stringValue = "LAD"
-        views += [game2]
-        
-        let game3 = gameView(frame: NSMakeRect(0, 0, 115, 32))
-        game3.AwayLabel.stringValue = "NYM"
-        game3.HomeLabel.stringValue = "NYY"
-        views += [game3]
+        let a = 3 * start
+        let b = a + 2
+        for j in a...b {
+            if json.indices.contains(j) {
+                let game = gameView(frame: NSMakeRect(0, 0, 117, 32))
+                game.gameValues(game: json[j] as! NSObject)
+                views += [game]
+            }
+        }
         
         let stack = NSStackView(views: views)
         stack.orientation = NSUserInterfaceLayoutOrientation.horizontal
@@ -103,13 +121,18 @@ class ViewController: NSViewController {
         if (month.count == 1) {month = "0" + month}
         var day: String = String(dateTimeComponents.day!)
         if (day.count == 1) {day = "0" + day}
-        var hour: String = String(dateTimeComponents.hour!)
-        if (hour.count == 1) {hour = "0" + hour}
+        var hour: String
+        var ampm: String
+        if (Int(dateTimeComponents.hour!) > 12) {
+            ampm = "PM"
+            hour = String(Int(dateTimeComponents.hour!) - 12)
+        } else {
+            ampm = "AM"
+            hour = String(dateTimeComponents.hour!)
+        }
         var minute: String = String(dateTimeComponents.minute!)
         if (minute.count == 1) {minute = "0" + minute}
-        var second: String = String(dateTimeComponents.second!)
-        if (second.count == 1) {second = "0" + second}
-        let formattedTime = String(dateTimeComponents.year!)  + "-" + month  + "-" + day  + " " + hour  + ":" + minute  + ":" + second
+        let formattedTime = String(dateTimeComponents.year!)  + "-" + month  + "-" + day  + " " + hour  + ":" + minute  + " " + ampm
         currentTimeLabel.stringValue = formattedTime
     }
     

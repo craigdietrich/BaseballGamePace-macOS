@@ -727,8 +727,8 @@
                                         </connections>
                                     </button>
                                     <textField identifier="currentTimeLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ClJ-m0-Svl">
-                                        <rect key="frame" x="135" y="3" width="131" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="2019-04-01 01:01:01" id="7Hq-6a-ibi">
+                                        <rect key="frame" x="131" y="3" width="138" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="2019-04-01 12:00 AM" id="7Hq-6a-ibi">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
