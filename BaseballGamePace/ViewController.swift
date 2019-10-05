@@ -49,7 +49,6 @@ class ViewController: NSViewController {
             numRows = numRows + 1
         }
         for j in 0...Int(numRows) {
-            print(j)
             parseRow(json: json, start: j)
         }
         
@@ -61,16 +60,16 @@ class ViewController: NSViewController {
         let a = 3 * start
         let b = a + 2
         for j in a...b {
+            let game = gameView(frame: NSMakeRect(0, 0, 110, 32))
             if json.indices.contains(j) {
-                let game = gameView(frame: NSMakeRect(0, 0, 117, 32))
                 game.gameValues(game: json[j] as! NSObject)
-                views += [game]
             }
+            views += [game]
         }
         
         let stack = NSStackView(views: views)
         stack.orientation = NSUserInterfaceLayoutOrientation.horizontal
-        stack.distribution = NSStackView.Distribution.fillEqually
+        stack.distribution = NSStackView.Distribution.fillEqually 
         gameStackView.addArrangedSubview(stack)
         
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -106,34 +105,41 @@ class ViewController: NSViewController {
     }
     
     func updateCurrentTime() {
-        let currentDateTime = Date()
-        let userCalendar = Calendar.current
-        let requestedComponents: Set<Calendar.Component> = [
+        
+        let myCalendar = Calendar(identifier: .gregorian)
+        let dateTimeComponents = myCalendar.dateComponents([
             .year,
             .month,
             .day,
             .hour,
             .minute,
             .second
-        ]
-        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        ], from: Date())
+        
         var month: String = String(dateTimeComponents.month!)
         if (month.count == 1) {month = "0" + month}
         var day: String = String(dateTimeComponents.day!)
         if (day.count == 1) {day = "0" + day}
+        var formattedTime = String(dateTimeComponents.year!)  + "-" + month  + "-" + day
+        
         var hour: String
         var ampm: String
-        if (Int(dateTimeComponents.hour!) > 12) {
+        if (Int(dateTimeComponents.hour!) > 11) {
             ampm = "PM"
             hour = String(Int(dateTimeComponents.hour!) - 12)
         } else {
             ampm = "AM"
             hour = String(dateTimeComponents.hour!)
         }
+        if hour == "0" {
+            hour = "12"
+        }
         var minute: String = String(dateTimeComponents.minute!)
         if (minute.count == 1) {minute = "0" + minute}
-        let formattedTime = String(dateTimeComponents.year!)  + "-" + month  + "-" + day  + " " + hour  + ":" + minute  + " " + ampm
+        formattedTime = formattedTime + " " + hour  + ":" + minute  + " " + ampm
+        
         currentTimeLabel.stringValue = formattedTime
+        
     }
     
     @IBAction func clickedOpenScoreboard(_ sender: NSButton) {
