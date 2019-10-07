@@ -34,7 +34,7 @@ class gameView: NSView {
             PaceLabel.stringValue = "+ 20 min"
             PaceLabel.textColor = NSColor.red
         }
-        // Pace   https://stackoverflow.com/questions/38641982/converting-date-between-timezones-swift
+        // Pace https://stackoverflow.com/questions/38641982/converting-date-between-timezones-swift
     }
 
     internal func color() -> NSColor {

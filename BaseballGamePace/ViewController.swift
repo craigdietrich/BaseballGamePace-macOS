@@ -12,18 +12,32 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var gameStackView: NSStackView!
     @IBOutlet weak var currentTimeLabel: NSTextField!
+    var timer: Timer?
+    var timeout: Double = 30.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let json = getJsonFromUrl()
-        parseData(json: json)
-        updateCurrentTime()
+        go()
     }
 
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
+    }
+    
+    internal func go() {
+        timer?.invalidate()
+        let json = getJsonFromUrl()
+        parseData(json: json)
+        updateCurrentTime()
+        timer = Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(loop), userInfo: nil, repeats: true)
+    }
+    
+    @objc internal func loop() {  // In order to be able to compile to < OS10.12
+        let json = getJsonFromUrl()
+        parseData(json: json)
+        updateCurrentTime()
     }
     
     internal func getJsonFromUrl() -> Array<Any> {  // https://developer.apple.com/swift/blog/?id=37
@@ -42,6 +56,12 @@ class ViewController: NSViewController {
     
     internal func parseData(json: Array<Any>) {
         
+        // Rmmove existing
+        while let first = gameStackView.arrangedSubviews.first {
+            gameStackView.removeArrangedSubview(first)
+            first.removeFromSuperview()
+        }
+        // Add per row
         var numRows: Double = Double(json.count / 3)
         numRows.round(.down)
         numRows = numRows - 1
@@ -69,7 +89,8 @@ class ViewController: NSViewController {
         
         let stack = NSStackView(views: views)
         stack.orientation = NSUserInterfaceLayoutOrientation.horizontal
-        stack.distribution = NSStackView.Distribution.fillEqually 
+        stack.distribution = NSStackView.Distribution.fillEqually
+        stack.spacing = 0.0
         gameStackView.addArrangedSubview(stack)
         
         stack.translatesAutoresizingMaskIntoConstraints = false
