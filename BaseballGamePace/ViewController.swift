@@ -56,7 +56,7 @@ class ViewController: NSViewController {
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
             return json as! Array
         } catch {
-            // contents could not be loaded
+            // TODO: contents could not be loaded
         }
         return []
     }
