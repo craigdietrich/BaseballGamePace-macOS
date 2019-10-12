@@ -8,6 +8,13 @@
 
 import Cocoa
 
+extension NSLayoutConstraint {
+    override public var description: String {
+        let id = identifier ?? ""
+        return "id: \(id), constant: \(constant)"
+    }
+}
+
 class ViewController: NSViewController {
 
     @IBOutlet weak var gameStackView: NSStackView!
@@ -80,7 +87,7 @@ class ViewController: NSViewController {
         let a = 3 * start
         let b = a + 2
         for j in a...b {
-            let game = gameView(frame: NSMakeRect(0, 0, 110, 32))
+            let game = gameView(frame: NSMakeRect(0, 0, 112, 32))
             if json.indices.contains(j) {
                 game.gameValues(game: json[j] as! NSObject)
             }
@@ -103,6 +110,7 @@ class ViewController: NSViewController {
             multiplier: 1.0,
             constant: 0
         )
+        leadingConstraint.identifier = "leading_"+String(start)
         let trailingConstraint = NSLayoutConstraint(
             item: stack,
             attribute: NSLayoutConstraint.Attribute.trailing,
@@ -112,6 +120,7 @@ class ViewController: NSViewController {
             multiplier: 1.0,
             constant: 0
         )
+        trailingConstraint.identifier = "trailing_"+String(start)
         let bottomContraint = NSLayoutConstraint(
             item: stack,
             attribute: NSLayoutConstraint.Attribute.height,
@@ -121,6 +130,7 @@ class ViewController: NSViewController {
             multiplier: 1.0,
             constant: 32
         )
+        bottomContraint.identifier = "bottom_"+String(start)
         gameStackView.addConstraints([leadingConstraint, trailingConstraint, bottomContraint])
 
     }
@@ -178,4 +188,3 @@ class ViewController: NSViewController {
     }
     
 }
-

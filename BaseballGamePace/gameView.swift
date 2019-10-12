@@ -22,8 +22,6 @@ class gameView: NSView {
         customView.isHidden = false
         AwayLabel.stringValue = game.value(forKey: "away") as! String
         HomeLabel.stringValue = game.value(forKey: "home") as! String
-        FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
-        InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
         let isOver = game.value(forKey: "is_over") as! Bool
         if isOver {
             FrameLabel.stringValue = ""
@@ -31,15 +29,47 @@ class gameView: NSView {
             PaceLabel.stringValue = "Complete"
             customView.alphaValue = 0.6
         } else {
-            PaceLabel.stringValue = "+ 20 min"
-            PaceLabel.textColor = NSColor.red
+            FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
+            InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
+            StartLabel.stringValue = getStartTime(utcTime:((game.value(forKey: "start") as? String)!))
+            PaceLabel.stringValue = getPace()
+            PaceLabel.textColor = getColor()
         }
         // Pace https://stackoverflow.com/questions/38641982/converting-date-between-timezones-swift
     }
-
-    internal func color() -> NSColor {
+    
+    internal func getStartTime(utcTime: String) -> String {
         
-        return NSColor.red
+        let localTime = UTCToLocal(isoDate: utcTime)
+        return localTime
+        
+    }
+    
+    internal func getPace() -> String {
+        
+        return "Even"
+        
+    }
+    
+    internal func getColor() -> NSColor {
+        
+        return NSColor.orange
+        
+    }
+    
+    internal func UTCToLocal(isoDate:String) -> String {
+
+        print(isoDate)
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "h:mm a"
+        let datee = dateFormatterGet.date(from: isoDate)
+        let localDate =  dateFormatterPrint.string(from: datee ?? Date())
+        print(localDate)
+        return localDate
         
     }
     

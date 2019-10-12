@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -764,12 +764,12 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="BBW-qA-WYs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="5dh-1n-Rr0"/>
-                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="10" id="D9w-C9-qq3"/>
-                            <constraint firstAttribute="trailing" secondItem="BBW-qA-WYs" secondAttribute="trailing" constant="20" symbolic="YES" id="IVJ-Vw-Cwb"/>
-                            <constraint firstAttribute="trailing" secondItem="LrS-j7-cCP" secondAttribute="trailing" constant="20" symbolic="YES" id="WEs-5h-3R8"/>
-                            <constraint firstItem="LrS-j7-cCP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="fqP-HQ-Yyv"/>
-                            <constraint firstItem="LrS-j7-cCP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="oSu-b8-ozS"/>
+                            <constraint firstItem="BBW-qA-WYs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" identifier="StackView_Leading" id="5dh-1n-Rr0"/>
+                            <constraint firstAttribute="bottom" secondItem="BBW-qA-WYs" secondAttribute="bottom" constant="10" identifier="Superview_Bottom" id="D9w-C9-qq3"/>
+                            <constraint firstAttribute="trailing" secondItem="BBW-qA-WYs" secondAttribute="trailing" constant="20" symbolic="YES" identifier="Superview_Trailing" id="IVJ-Vw-Cwb"/>
+                            <constraint firstAttribute="trailing" secondItem="LrS-j7-cCP" secondAttribute="trailing" constant="20" symbolic="YES" identifier="Superview_Trailing" id="WEs-5h-3R8"/>
+                            <constraint firstItem="LrS-j7-cCP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" identifier="GameStackView_Top" id="fqP-HQ-Yyv"/>
+                            <constraint firstItem="LrS-j7-cCP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" identifier="GameStackView_Leading" id="oSu-b8-ozS"/>
                         </constraints>
                     </view>
                     <connections>
