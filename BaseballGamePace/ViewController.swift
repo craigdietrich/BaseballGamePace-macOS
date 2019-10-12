@@ -137,39 +137,11 @@ class ViewController: NSViewController {
     
     func updateCurrentTime() {
         
-        let myCalendar = Calendar(identifier: .gregorian)
-        let dateTimeComponents = myCalendar.dateComponents([
-            .year,
-            .month,
-            .day,
-            .hour,
-            .minute,
-            .second
-        ], from: Date())
-        
-        var month: String = String(dateTimeComponents.month!)
-        if (month.count == 1) {month = "0" + month}
-        var day: String = String(dateTimeComponents.day!)
-        if (day.count == 1) {day = "0" + day}
-        var formattedTime = String(dateTimeComponents.year!)  + "-" + month  + "-" + day
-        
-        var hour: String
-        var ampm: String
-        if (Int(dateTimeComponents.hour!) > 11) {
-            ampm = "PM"
-            hour = String(Int(dateTimeComponents.hour!) - 12)
-        } else {
-            ampm = "AM"
-            hour = String(dateTimeComponents.hour!)
-        }
-        if hour == "0" {
-            hour = "12"
-        }
-        var minute: String = String(dateTimeComponents.minute!)
-        if (minute.count == 1) {minute = "0" + minute}
-        formattedTime = formattedTime + " " + hour  + ":" + minute  + " " + ampm
-        
-        currentTimeLabel.stringValue = formattedTime
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd h:mm a"
+        let localDate =  dateFormatterPrint.string(from: Date())
+        currentTimeLabel.stringValue = localDate
         
     }
     

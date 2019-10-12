@@ -35,7 +35,6 @@ class gameView: NSView {
             PaceLabel.stringValue = getPace()
             PaceLabel.textColor = getColor()
         }
-        // Pace https://stackoverflow.com/questions/38641982/converting-date-between-timezones-swift
     }
     
     internal func getStartTime(utcTime: String) -> String {
