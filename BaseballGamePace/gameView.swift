@@ -33,8 +33,9 @@ class gameView: NSView {
             FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
             InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
             StartLabel.stringValue = getStartTime(utcTime:((game.value(forKey: "start") as? String)!))
-            PaceLabel.stringValue = getPace()
-            PaceLabel.textColor = getColor()
+            let pace = getPace()
+            PaceLabel.stringValue = pace
+            PaceLabel.textColor = getColor(pace:pace)
         } else {  // Yet to begin
             FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
             InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
@@ -84,13 +85,20 @@ class gameView: NSView {
     
     internal func getPace() -> String {
         
-        return "Even"
+        return "+ 20 min"
         
     }
     
-    internal func getColor() -> NSColor {
+    internal func getColor(pace: String) -> NSColor {
         
-        return NSColor.orange
+        switch pace.first {
+            case "+":
+                return NSColor(red: 0.7, green: 0.0, blue: 0.0, alpha: 1.0)
+            case "-":
+                return NSColor(red: 0.0, green: 0.7, blue: 0.0, alpha: 1.0)
+            default:
+                return NSColor.orange
+        }
         
     }
     
