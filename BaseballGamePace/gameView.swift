@@ -33,7 +33,11 @@ class gameView: NSView {
             FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
             InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
             StartLabel.stringValue = getStartTime(utcTime:((game.value(forKey: "start") as? String)!))
-            let pace = getPace(utcTime:((game.value(forKey: "start") as? String)!))
+            let pace = getPace(
+                utcTime:((game.value(forKey: "start") as? String)!),
+                inning:((game.value(forKey: "inning") as? String) ?? ""),
+                frame:(("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot")
+            )
             PaceLabel.stringValue = pace
             PaceLabel.textColor = getColor(pace:pace)
         } else {  // Yet to begin
@@ -83,7 +87,7 @@ class gameView: NSView {
         
     }
     
-    internal func getPace(utcTime: String) -> String {
+    internal func getPace(utcTime: String, inning: String, frame: String) -> String {
         
         // Elapsed minutes
         
@@ -114,7 +118,40 @@ class gameView: NSView {
         
         // Number of innings that have passed if the game were on pace (e.g., 2.5 = in the Bottom of the 3rd)
         
-        return "+ 20 min"
+        let timePerFrame: Int = 10
+        var closestInningStart: Int = 0
+        var inningsShouldHavePassed: Double = 0.0
+        while (closestInningStart < ellapsedFromStart) {
+            if (closestInningStart + timePerFrame > ellapsedFromStart) {
+                break
+            }
+            closestInningStart = closestInningStart + timePerFrame
+            inningsShouldHavePassed = Double(closestInningStart) / (Double(timePerFrame * 2))
+        }
+        print("closestInningStart: " + String(closestInningStart) + " inningsShouldHavePassed: " + String(inningsShouldHavePassed))
+        
+        // Actual innings that have passed (e.g., 2.5 = in the Bottom of the 3rd)
+        
+        var actualInningsPassed: Double = Double(inning)! - 1.0
+        if ("Bot" == frame) {
+            actualInningsPassed = actualInningsPassed + 0.5
+        }
+        print("actualInningsPassed: " + String(actualInningsPassed))
+        
+        // Compare the actual inning to the pace inning (e.g., pace 3 vs current 3.5)
+        
+        let inningDiff: Double = actualInningsPassed - inningsShouldHavePassed
+        let pace: Double = inningDiff * (Double(timePerFrame) * 2)
+        print("pace: " + String(pace))
+        
+        // Convert to human string
+        var humanPace: String = "Even"
+        if (pace < 0) {
+            humanPace = "+ " + String(Int(abs(pace))) + " min"
+        } else if (pace > 0) {
+            humanPace = "- " + String(Int(abs(pace))) + " min"
+        }
+        return humanPace
         
     }
     
@@ -124,7 +161,7 @@ class gameView: NSView {
             case "+":
                 return NSColor(red: 0.7, green: 0.0, blue: 0.0, alpha: 1.0)
             case "-":
-                return NSColor(red: 0.0, green: 0.7, blue: 0.0, alpha: 1.0)
+                return NSColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0)
             default:
                 return NSColor.orange
         }
