@@ -33,7 +33,7 @@ class gameView: NSView {
             FrameLabel.stringValue = ("Top" == game.value(forKey: "frame") as! String) ? "Top" : "Bot"
             InningLabel.stringValue = (game.value(forKey: "inning") as? String) ?? ""
             StartLabel.stringValue = getStartTime(utcTime:((game.value(forKey: "start") as? String)!))
-            let pace = getPace()
+            let pace = getPace(utcTime:((game.value(forKey: "start") as? String)!))
             PaceLabel.stringValue = pace
             PaceLabel.textColor = getColor(pace:pace)
         } else {  // Yet to begin
@@ -83,7 +83,36 @@ class gameView: NSView {
         
     }
     
-    internal func getPace() -> String {
+    internal func getPace(utcTime: String) -> String {
+        
+        // Elapsed minutes
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "HH:mm"
+        let datee = dateFormatterGet.date(from: utcTime)
+        let start =  dateFormatterPrint.string(from: datee ?? Date())
+        let startComponents = start.components(separatedBy: ":")
+        let startHour: Int = Int(startComponents[0])!
+        let startMinutes: Int = Int(startComponents[1])!
+        let startTotalMinutes: Int = (startHour * 60) + startMinutes
+        
+        let dateFormatterNow = DateFormatter()
+        dateFormatterNow.timeZone = TimeZone.current
+        dateFormatterNow.dateFormat = "HH:mm"
+        let now =  dateFormatterNow.string(from: Date())
+        let nowComponents = now.components(separatedBy: ":")
+        let nowHour: Int = Int(nowComponents[0])!
+        let nowMinutes: Int = Int(nowComponents[1])!
+        let nowTotalMinutes: Int = (nowHour * 60) + nowMinutes
+        
+        let ellapsedFromStart: Int = nowTotalMinutes - startTotalMinutes
+        print("ellapsedFromStart: " + String(ellapsedFromStart))
+        
+        // Number of innings that have passed if the game were on pace (e.g., 2.5 = in the Bottom of the 3rd)
         
         return "+ 20 min"
         

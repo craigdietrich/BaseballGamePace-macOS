@@ -48,7 +48,7 @@ class ViewController: NSViewController {
     }
     
     internal func getJsonFromUrl() -> Array<Any> {  // https://developer.apple.com/swift/blog/?id=37
-        let feed = "https://craigdietrich.com/projects/feeds/baseball-game-pace.json"
+        let feed = ""
         let url = URL(string: feed)
         do {
             let contents = try String(contentsOf: url!)
