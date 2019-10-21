@@ -430,6 +430,7 @@
 				CODE_SIGN_ENTITLEMENTS = BaseballGamePace/BaseballGamePace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WWYNXYA8Y4;
 				INFOPLIST_FILE = BaseballGamePace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,6 +450,7 @@
 				CODE_SIGN_ENTITLEMENTS = BaseballGamePace/BaseballGamePace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WWYNXYA8Y4;
 				INFOPLIST_FILE = BaseballGamePace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

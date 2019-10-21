@@ -145,6 +145,7 @@ class gameView: NSView {
         print("pace: " + String(pace))
         
         // Convert to human string
+        
         var humanPace: String = "Even"
         if (pace < 0) {
             humanPace = "+ " + String(Int(abs(pace))) + " min"

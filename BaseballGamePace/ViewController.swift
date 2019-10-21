@@ -19,6 +19,7 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var gameStackView: NSStackView!
     @IBOutlet weak var currentTimeLabel: NSTextField!
+    @IBOutlet weak var messageLabel: NSTextField!
     var timer: Timer?
     var timeout: Double = 30.0
     
@@ -48,6 +49,7 @@ class ViewController: NSViewController {
     }
     
     internal func getJsonFromUrl() -> Array<Any> {  // https://developer.apple.com/swift/blog/?id=37
+        URLCache.shared.removeAllCachedResponses()
         let feed = ""
         let url = URL(string: feed)
         do {
@@ -67,6 +69,15 @@ class ViewController: NSViewController {
         while let first = gameStackView.arrangedSubviews.first {
             gameStackView.removeArrangedSubview(first)
             first.removeFromSuperview()
+        }
+        // Message?
+        messageLabel.isHidden = true
+        if let first = (json[0] as? [String:Any]) {
+            if let msg = (first["message"] as? String) {
+                messageLabel.stringValue = msg
+                messageLabel.isHidden = false
+                return
+            }
         }
         // Add per row
         var numRows: Double = Double(json.count / 3)
